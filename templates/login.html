@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome | Login - Event Vendor Recommendation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0e7ff 0%, #fff6fa 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .login-box {
+            background: #fff;
+            max-width: 380px;
+            margin: 60px auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.09);
+            padding: 2.5em 2em 2em 2em;
+            text-align: center;
+        }
+        .login-box h1 {
+            margin-bottom: 0.5em;
+            color: #2461d6;
+            font-size: 2.2em;
+            letter-spacing: 0.03em;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .login-box p.sub {
+            margin-bottom: 2em;
+            color: #666;
+            font-size: 1.1em;
+        }
+        .login-box form {
+            margin-top: 1.5em;
+        }
+        .login-box input[type="email"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 0.8em;
+            margin-bottom: 1em;
+            border: 1px solid #c3dafe;
+            border-radius: 6px;
+            font-size: 1em;
+            background: #f4f8ff;
+            transition: border 0.2s;
+        }
+        .login-box input:focus {
+            border-color: #2461d6;
+            outline: none;
+        }
+        .login-box button {
+            width: 100%;
+            padding: 0.9em;
+            border: none;
+            border-radius: 6px;
+            background: #2461d6;
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .login-box button:hover {
+            background: #1744a2;
+        }
+        .login-box .links {
+            margin-top: 1.5em;
+            font-size: 0.98em;
+        }
+        .login-box .links a {
+            color: #2461d6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .login-box .links a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 480px) {
+            .login-box {
+                margin: 30px 10px;
+                padding: 2em 1em;
+            }
+        }
+        .flash-messages {
+            margin-bottom: 1em;
+        }
+        .flash-messages li {
+            list-style: none;
+            color: #e53e3e;
+            margin-bottom: 0.5em;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h1>Welcome!</h1>
+        <p class="sub">to Event Vendor Recommendation<br><span style="color:#2461d6;">Login to continue</span></p>
+        <form method="post" autocomplete="off">
+            <input type="email" name="email" placeholder="Email" required autofocus>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <div class="links">
+            <span>Don't have an account? <a href="{{ url_for('register') }}">Register</a></span>
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="flash-messages">
+              {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

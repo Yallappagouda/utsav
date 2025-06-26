@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vendor Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Event Planning Results</h1>
+        <p><strong>Event Type:</strong> {{ event_type }}</p>
+        <p><strong>Location:</strong> {{ location }}</p>
+        <p><strong>Total Budget:</strong> ₹{{ budget }}</p>
+        <p><strong>Budget Used:</strong> ₹{{ total_spent }}</p>
+        <p><strong>Budget Remaining:</strong> ₹{{ remaining }}</p>
+        {% if recommendations %}
+            <h2>Recommended Vendors</h2>
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Price (₹)</th>
+                    <th>Rating</th>
+                    <th>Score</th>
+                    <th>Match Score</th>
+                </tr>
+                {% for vtype, v in recommendations.items() %}
+                <tr>
+                    <td>{{ vtype }}</td>
+                    <td>{{ v['name'] }}</td>
+                    <td>{{ v['price'] }}</td>
+                    <td>{{ v['rating'] }}</td>
+                    <td>{{ v['score'] }}</td>
+                    <td>{{ v['match_score'] }}/100</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <h2>Event Planning Steps</h2>
+            <ol>
+                {% for step in planning_steps %}
+                <li>{{ step }}</li>
+                {% endfor %}
+            </ol>
+            <div class="fun-message">{{ fun_message }}</div>
+        {% else %}
+            <p>No suitable vendors found for your selection. Try different inputs!</p>
+        {% endif %}
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+    <!-- ... your existing HTML above ... -->
+
+{% if filtered_vendors %}
+    <h2>All Filtered Vendors (Comparison Table)</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price (₹)</th>
+            <th>Rating</th>
+            <th>Score</th>
+            <th>Match Score</th>
+        </tr>
+        {% for v in filtered_vendors %}
+        <tr>
+            <td>{{ v['name'] }}</td>
+            <td>{{ v['type'] }}</td>
+            <td>{{ v['price'] }}</td>
+            <td>{{ v['rating'] }}</td>
+            <td>{{ v['score'] }}</td>
+            <td>{{ v['match_score'] }}/100</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+<form action="{{ url_for('download') }}" method="post">
+    <input type="hidden" name="event_type" value="{{ event_type }}">
+    <input type="hidden" name="location" value="{{ location }}">
+    <input type="hidden" name="budget" value="{{ budget }}">
+    <input type="hidden" name="total_spent" value="{{ total_spent }}">
+    <input type="hidden" name="remaining" value="{{ remaining }}">
+    {% for vtype, v in recommendations.items() %}
+      <input type="hidden" name="vendor_{{ vtype }}" value="{{ vtype }}: {{ v['name'] }} (Price: ₹{{ v['price'] }}, Rating: {{ v['rating'] }}, Score: {{ v['score'] }}, Match Score: {{ v['match_score'] }}/100)">
+    {% endfor %}
+    <button type="submit">Export Recommendations (.txt)</button>
+</form>
+{% if current_user.is_authenticated %}
+<p>Logged in as {{ current_user.email }} | <a href="{{ url_for('logout') }}">Logout</a></p>
+{% endif %}
+
+<!-- ... your existing HTML below ... -->
+</body>
+</html>

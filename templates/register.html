@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - Event Vendor Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Register</h1>
+    <form method="post">
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        <label>Password:</label>
+        <input type="password" name="password" required>
+        <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</div>
+</body>
+</html>

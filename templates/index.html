@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Vendor Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Event Vendor Recommendation AI</h1>
+        <form method="post">
+            <label>Event Type:</label>
+            <select name="event_type" required>
+                <option value="Wedding">Wedding</option>
+                <option value="Birthday">Birthday</option>
+                <option value="Corporate">Corporate</option>
+            </select>
+            <label>Location:</label>
+            <input type="text" name="location" placeholder="e.g. Bangalore" required>
+            <label>Budget (₹):</label>
+            <input type="number" name="budget" min="1" placeholder="e.g. 200000" required>
+            <button type="submit">Get Recommendations</button>
+        </form>
+        {% if current_user.is_authenticated %}
+<p>Logged in as {{ current_user.email }} | <a href="{{ url_for('logout') }}">Logout</a></p>
+{% endif %}
+    </div>
+</body>
+</html>
