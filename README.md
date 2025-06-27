@@ -73,21 +73,19 @@ The app will be available at [http://127.0.0.1:5000](http://127.0.0.1:5000)
 ## Project Structure
 
 ```
-utsavai-event-web/
+utsav/
 │
-├── app.py
-├── users.db               # Created automatically
-├── requirements.txt
+├── app.py                # Main Flask application
+├── requirements.txt      # Python dependencies
+├── users.db              # SQLite database (created automatically)
 ├── static/
-│   └── style.css
+│   └── style.css         # CSS styles
 └── templates/
-    ├── index.html
-    ├── login.html
-    ├── register.html
-    └── result.html
+    ├── index.html        # Main event input page
+    ├── login.html        # Login form
+    ├── register.html     # Registration form
+    └── result.html       # Recommendations/results page
 ```
-
----
 
 ## Screenshots
 
