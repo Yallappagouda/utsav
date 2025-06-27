@@ -87,6 +87,79 @@ utsav/
     └── result.html       # Recommendations/results page
 ```
 
+### Application Flow Chart
+
+```
++-----------------+
+|    User         |
++-----------------+
+         |
+         v
++-------------------------+
+| Register / Login Page   |
++-------------------------+
+         |
+         v
++-------------------------+
+| Event Details Input     |
+| (Type, Location, Budget)|
++-------------------------+
+         |
+         v
++-------------------------+
+| Fetch & Filter Vendors  |
++-------------------------+
+         |
+         v
++-------------------------+
+| Show Recommendations    |
+| (with Comparisons,      |
+|  ASCII Visualizations,  |
+|  Budget Summary)        |
++-------------------------+
+         |
+         v
++-------------------------+
+| Export Recommendations  |
++-------------------------+
+         |
+         v
++-----------------+
+|    Logout       |
++-----------------+
+```
+
+---
+
+### High-Level Architecture Diagram
+
+```
++---------------------+
+|      Frontend       |
+|  (HTML, CSS, Jinja) |
++----------+----------+
+           |
+           v
++---------------------+
+|      Backend        |
+|    (Flask App)      |
++----------+----------+
+           |
+   +-------+-------+
+   |               |
+   v               v
++--------+   +--------------------+
+|SQLite  |   | Vendor Mock Data   |
+|Database|   |  (in-memory/data)  |
++--------+   +--------------------+
+           |
+           v
++----------------------+
+|  Visualization/Export|
+| (ASCII Charts, .txt) |
++----------------------+
+```
+
 ## Screenshots
 ""![image](https://github.com/user-attachments/assets/59f3f9df-7eef-4f32-aca6-5baeb12f6084)""
 
