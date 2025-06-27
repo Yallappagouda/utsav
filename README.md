@@ -88,8 +88,8 @@ utsav/
 ```
 
 ## Screenshots
+""![image](https://github.com/user-attachments/assets/59f3f9df-7eef-4f32-aca6-5baeb12f6084)""
 
-> Add screenshots here for UI demonstration.
 
 ---
 
