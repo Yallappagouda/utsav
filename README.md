@@ -3,6 +3,14 @@
 A Flask-based web app that helps users plan events by recommending vendors according to event type, location, and budget. The app supports user accounts (email login/registration), vendor comparison, budget tracking, ASCII-based data visualizations, and lets users export recommendations to a text file.
 
 ---
+🧑‍💻 Tech Stack
+Backend: Python (Flask)
+Authentication: Flask-Login
+Database: SQLite (handled via Flask-SQLAlchemy or similar)
+Frontend: Jinja2 templates (HTML) + CSS (static/style.css)
+Visualization: ASCII (text-based bar charts)
+Export: Text file download for recommendations
+
 
 ## Features
 
